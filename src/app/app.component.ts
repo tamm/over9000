@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(
     private http: Http,
   	) {
-  	this.data = false
+  	this.data = []
   	this.subsetStart = 0
   	this.subsetEnd = 10
   	this.getSampleData()
@@ -25,7 +25,7 @@ export class AppComponent {
     return this.http.get(`assets/sample`)
       .toPromise()
       .then((data: Response) => {
-        this.data = data.json()
+        this.data = this.data.concat(data.json())
       })
       .catch((e) => console.error({message: `Could not get sample`, e}));
 
@@ -39,6 +39,18 @@ export class AppComponent {
   	}) : []
   }
 
+  public loadMoreData(): void {
+  	// get 1 000 000 entries
+  	for (var i = 1; i < 108; i++) {
+  		this.getSampleData()
+  	}
+  }
+
+  public goToFirstSubset(): void {
+  	this.subsetStart = 0
+  	this.subsetEnd = this.subsetStart + 10
+  }
+
   public goToPreviousSubset(): void {
   	this.subsetStart = this.subsetStart - 10 > 0 ? this.subsetStart - 10 : 0
   	this.subsetEnd = this.subsetStart + 10
@@ -46,6 +58,11 @@ export class AppComponent {
 
   public goToNextSubset(): void {
   	this.subsetStart = this.subsetStart + 10 < this.data.length - 1 ? this.subsetStart + 10 : this.subsetStart
+  	this.subsetEnd = this.subsetStart + 10
+  }
+
+  public goToLastSubset(): void {
+  	this.subsetStart = (this.data.length % 10) * 10
   	this.subsetEnd = this.subsetStart + 10
   }
 }

@@ -15,51 +15,82 @@
   </ul>
 </div>
 
-<div *ngIf="data">Showing entries {{ subsetStart + 1 }} to {{ subsetEnd }} of {{ data?.length }}.</div>
+<div *ngIf="data?.length > 0">Showing entries {{ subsetStart + 1 }} to {{ subsetEnd }} of {{ data?.length }}.</div>
 
+<button (click)="goToFirstSubset()">First</button>
 <button (click)="goToPreviousSubset()">Previous</button>
-<button (click)="goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();goToNextSubset();">Next</button>
+
+<button (click)="goToNextSubset()">Next</button>
+<button (click)="goToLastSubset()">Last</button>
+
+<div>
+  <h3>EXPERIMENT</h3>
+  <p>See what happens if we load the data 108 times (might crash your browser)</p>
+  <button (click)="loadMoreData()">Load ONE MIIILLION entries!</button>
+</div>
 
 <div>
   <h3>Data</h3>
   <table>
-    <tr>
-      <th>pageTitle</th>
-      <th>title</th>
-      <th>url</th>
-      <th>hasHeader</th>
-      <th>headerPosition</th>
-      <th>tableType</th>
-      <th>tableNum</th>
-      <th>s3Link</th>
-      <th>recordEndOffset</th>
-      <th>recordOffset</th>
-      <th>tableOrientation</th>
-      <th>textBeforeTable</th>
-      <th>textAfterTable</th>
-      <th>hasKeyColumn</th>
-      <th>keyColumnIndex</th>
-      <th>headerRowIndex</th>
-    </tr>
-    <tr *ngFor="let entry of filteredData(); let i = index">
+    <thead>
+      <tr>
+        <th>pageTitle</th>
+        <th>title</th>
+        <th>url</th>
+        <th>hasHeader</th>
+        <th>headerPosition</th>
+        <th>tableType</th>
+        <th>tableNum</th>
+        <th>s3Link</th>
+        <th>recordEndOffset</th>
+        <th>recordOffset</th>
+        <th>tableOrientation</th>
+        <th>hasKeyColumn</th>
+        <th>keyColumnIndex</th>
+        <th>headerRowIndex</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let entry of filteredData(); let i = index">
+        <tr>
 
-      <td>{{ entry.pageTitle }} </td>
-      <td>{{ entry.title }} </td>
-      <td>{{ entry.url }} </td>
-      <td>{{ entry.hasHeader }} </td>
-      <td>{{ entry.headerPosition }} </td>
-      <td>{{ entry.tableType }} </td>
-      <td>{{ entry.tableNum }} </td>
-      <td>{{ entry.s3Link }} </td>
-      <td>{{ entry.recordEndOffset }} </td>
-      <td>{{ entry.recordOffset }} </td>
-      <td>{{ entry.tableOrientation }} </td>
-      <td>{{ entry.textBeforeTable }} </td>
-      <td>{{ entry.textAfterTable }} </td>
-      <td>{{ entry.hasKeyColumn }} </td>
-      <td>{{ entry.keyColumnIndex }} </td>
-      <td>{{ entry.headerRowIndex }} </td>
+          <td>{{ entry.pageTitle }} </td>
+          <td>{{ entry.title }} </td>
+          <td><a href="{{ entry.url }}">🔗</a></td>
+          <td>{{ entry.hasHeader }} </td>
+          <td>{{ entry.headerPosition }} </td>
+          <td>{{ entry.tableType }} </td>
+          <td>{{ entry.tableNum }} </td>
+          <td>{{ entry.s3Link }} </td>
+          <td>{{ entry.recordEndOffset }} </td>
+          <td>{{ entry.recordOffset }} </td>
+          <td>{{ entry.tableOrientation }} </td>
+          <td>{{ entry.hasKeyColumn }} </td>
+          <td>{{ entry.keyColumnIndex }} </td>
+          <td>{{ entry.headerRowIndex }} </td>
 
-    </tr>
+        </tr>
+        <tr>
+          <td colspan="100" class="tableData">
+
+            <p>{{ entry.textBeforeTable }} </p>
+
+            <table>
+              <tbody>
+                <tr *ngFor="let row of entry.relation; let r = index">
+                  <ng-container *ngFor="let cellData of row; let c = index">
+                    <th *ngIf="(c == 0 && entry.hasHeader && entry.headerPosition == 'FIRST_COLUMN') || (r == 0 && entry.hasHeader && entry.headerPosition == 'FIRST_ROW')">{{ cellData }}</th>
+                    <td *ngIf="!(c == 0 && entry.hasHeader && entry.headerPosition == 'FIRST_COLUMN') && !(r == 0 && entry.hasHeader && entry.headerPosition == 'FIRST_ROW')">{{ cellData }}</td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>{{ entry.textAfterTable }} </p>
+
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
   </table>
 </div>

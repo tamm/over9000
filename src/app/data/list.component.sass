@@ -1,0 +1,63 @@
+$black: #030202
+$white: #FFFBEB
+$primary: #E66502
+$contrast: #007491
+$highlight: #FFFB2B
+$light-text: $white
+$dark-text: $black
+
+@function textColor($color)
+	@if lightness($color) < 50
+		@return $light-text
+	@else
+		@return $dark-text
+
+#{':host'}
+	display: flex
+	flex-direction: column
+	overflow-y: auto
+
+section
+	padding: 1rem
+
+.tableData
+	background: lightgray
+	padding: 1rem
+
+.actions
+	display: flex
+	flex-direction: row
+	flex: 1 0 auto
+
+	> *
+		flex: 1 1 auto
+
+.state
+	text-align: center
+
+.list
+	overflow-x: auto
+
+	table
+
+.showLength
+	background: $primary
+	position: relative
+
+	select
+		width: 100%
+		position: absolute
+
+	.prefix
+		position: absolute
+		font-size: 1.25rem
+		left: 0
+		top: 0
+		padding: 0.5rem
+		z-index: 1
+		pointer-events: none
+		color: textColor($primary)
+		border: 2px solid transparent
+
+	.prefix + select
+		padding-left: 4rem

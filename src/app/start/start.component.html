@@ -1,0 +1,11 @@
+<div id="data-info">
+  <h3>Info about dataset</h3>
+
+  <ul>
+    <li>Entries in data set: {{ dataService?.data?.value?.length }}</li>
+    <li>Subset start: {{ subsetStart }}</li>
+    <li>Subset end: {{ subsetEnd }}</li>
+  </ul>
+</div>
+
+<a href="datalist" [routerLink]="['/datalist']">Show Data</a>

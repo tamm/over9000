@@ -1,74 +1,7 @@
-$black: #030202
-$white: #FFFBEB
-$primary: #E66502
-$contrast: #007491
-$highlight: #FFFB2B
-$light-text: $white
-$dark-text: $black
-
-@function textColor($color)
-	@if lightness($color) < 50
-		@return $light-text
-	@else
-		@return $dark-text
-
-// RESET
-
-/deep/ body
-  font: 300 16px "Helvetica Neue", Helvetica, sans-serif
-  margin: 0;
-
-/deep/ html, /deep/ body
-  height: 100%;
-  width: 100%;
-  min-height: 100%;
-  min-width: 100%;
-  overflow: hidden;
-
-/deep/ *
-	box-sizing: border-box
+@import "~global.sass"
 
 #{':host'}
 	display: flex
 	flex-direction: column
 	height: 100%
 	width: 100%;
-
-/deep/ button
-	background: $primary
-	color: textColor($primary)
-	border: 2px solid $primary
-	border-radius: 0
-	font-weight: 700
-	font-size: 1.25rem
-	padding: 0.5rem
-
-	&:hover
-		$hover: darken($primary, 20)
-		background: $hover
-		color: textColor($hover)
-		cursor: pointer
-		border: 2px solid $hover
-
-/deep/ select
-	background: $primary
-	color: textColor($primary)
-	border: 2px solid $primary
-	border-radius: 0
-	font-weight: 700
-	font-size: 1.25rem
-	padding: 0.5rem
-	text-align: center
-	-webkit-appearance: none
-
-	&:hover
-		$hover: darken($primary, 20)
-		background: $hover
-		color: textColor($hover)
-		cursor: pointer
-		border: 2px solid $hover
-
-h1
-	background: $primary
-	color: textColor($primary)
-	margin: 0

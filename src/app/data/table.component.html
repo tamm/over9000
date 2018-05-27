@@ -1,10 +1,38 @@
-<table>
-  <tbody>
-    <tr *ngFor="let row of data.relation; let r = index">
-      <ng-container *ngFor="let cellData of row; let c = index">
-        <th *ngIf="(c == 0 && data.hasHeader && data.headerPosition == 'FIRST_COLUMN') || (r == 0 && data.hasHeader && data.headerPosition == 'FIRST_ROW')">{{ cellData }}</th>
-        <td *ngIf="!(c == 0 && data.hasHeader && data.headerPosition == 'FIRST_COLUMN') && !(r == 0 && data.hasHeader && data.headerPosition == 'FIRST_ROW')">{{ cellData }}</td>
-      </ng-container>
-    </tr>
-  </tbody>
-</table>
+<ng-container *ngIf="displayType == 1">
+  <table>
+    <tbody>
+      <tr *ngFor="let row of data.relation; let r = index">
+        <ng-container *ngFor="let cellData of row; let c = index">
+          <th *ngIf="(c == 0 && data.hasHeader)">{{ cellData }}</th>
+          <td *ngIf="!(c == 0 && data.hasHeader)">{{ cellData }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-container *ngIf="displayType == 2">
+  <table>
+    <tbody>
+      <tr *ngFor="let row of data.relation; let r = index">
+        <ng-container *ngFor="let cellData of row; let c = index">
+          <th *ngIf="(r == 0 && data.hasHeader)">{{ cellData }}</th>
+          <td *ngIf="!(r == 0 && data.hasHeader)">{{ cellData }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-container *ngIf="!displayType">
+  <table>
+    <tbody>
+      <tr *ngFor="let row of data.relation; let r = index">
+        <ng-container *ngFor="let cellData of row; let c = index">
+          <th *ngIf="(c == 0 && data.hasHeader && data.headerPosition == 'FIRST_COLUMN') || (r == 0 && data.hasHeader && data.headerPosition == 'FIRST_ROW')">{{ cellData }}</th>
+          <td *ngIf="!(c == 0 && data.hasHeader && data.headerPosition == 'FIRST_COLUMN') && !(r == 0 && data.hasHeader && data.headerPosition == 'FIRST_ROW')">{{ cellData }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

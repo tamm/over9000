@@ -1,4 +1,4 @@
-<section class="state" *ngIf="dataService?.data?.value?.length > 0">Showing entries {{ subsetStart + 1 }} to {{ subsetEnd + 1 }} of {{ dataService?.data?.value?.length }}.</section>
+<section class="state" *ngIf="dataService?.data?.value?.length > 0">Showing page {{page_num}}, entries {{ subsetStart + 1 }} to {{ subsetEnd + 1 }} of {{ dataService?.data?.value?.length }}.</section>
 
 <div class="actions" [formGroup]="listForm" *ngIf="dataService?.data?.value?.length > 0">
   <button (click)="goToFirstSubset()">First</button>
@@ -20,57 +20,23 @@
 
 <div>
   <div class="list">
-    <h3>Data</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>title</th>
-          <th>url</th>
-          <th>hasHeader</th>
-          <th>headerPosition</th>
-          <th>tableType</th>
-          <th>tableNum</th>
-          <th>recordEndOffset</th>
-          <th>recordOffset</th>
-          <th>tableOrientation</th>
-          <th>hasKeyColumn</th>
-          <th>keyColumnIndex</th>
-          <th>headerRowIndex</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let entry of filteredData(); let i = index">
-          <tr>
+    <ng-container *ngFor="let entry of filteredData(); let i = index">
+      <h3><a title="Table found at" href="{{ entry.url }}">{{ entry.pageTitle }} 🔗</a></h3>
 
-            <td>{{ entry.title }} </td>
-            <td><a href="{{ entry.url }}">🔗</a></td>
-            <td>{{ entry.hasHeader }} </td>
-            <td>{{ entry.headerPosition }} </td>
-            <td>{{ entry.tableType }} </td>
-            <td>{{ entry.tableNum }} </td>
-            <td>{{ entry.recordEndOffset }} </td>
-            <td>{{ entry.recordOffset }} </td>
-            <td>{{ entry.tableOrientation }} </td>
-            <td>{{ entry.hasKeyColumn }} </td>
-            <td>{{ entry.keyColumnIndex }} </td>
-            <td>{{ entry.headerRowIndex }} </td>
+      <div class="tableData">
+        <h4>{{ entry.title }}</h4>
 
-          </tr>
-          <tr>
-            <td colspan="100" class="tableData">
-              <h4>{{ entry.pageTitle }} </h4>
+        <small>{{ entry.tableType }}</small>
+        <small>{{ entry.tableNum }}</small>
+        <small>{{ entry.headerPosition }}</small>
 
-              <p>{{ entry.textBeforeTable }} </p>
+        <p class="textBeforeTable">{{ entry.textBeforeTable }} </p>
 
-              <data-table [data]="entry"></data-table>
+        <data-table [data]="entry"></data-table>
 
-              <p>{{ entry.textAfterTable }} </p>
-
-            </td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
+        <p class="textAfterTable">{{ entry.textAfterTable }} </p>
+      </div>
+    </ng-container>
   </div>
 </div>
 
@@ -94,8 +60,8 @@
 
 <section class="state" *ngIf="dataService?.data?.value?.length > 0">Showing entries {{ subsetStart + 1 }} to {{ subsetEnd + 1 }} of {{ dataService?.data?.value?.length }}.</section>
 
+<h3>EXPERIMENT</h3>
 <section>
-  <h3>EXPERIMENT</h3>
   <p>See what happens if we load the data 108 times (might crash your browser)</p>
   <p>(1 000 000 entries = 9275 entries * 108 loads)</p>
   <button (click)="loadMoreData()">Load ONE MIIILLION entries!</button>

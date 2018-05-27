@@ -13,6 +13,14 @@ export const routes: Routes = [
     component: ListComponent,
   },
   {
+    path: 'datalist/:page_num',
+    component: ListComponent,
+  },
+  {
+    path: 'datalist/:show_num/:page_num',
+    component: ListComponent,
+  },
+  {
     path: 'start',
     component: StartComponent,
   },

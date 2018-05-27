@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+
+// colours
+$black: #030202
+$white: #FFFBEB
+$primary: #E66502
+$contrast: #007491
+$highlight: #FFFB2B
+$light-text: $white
+$dark-text: $black
+
+// sizes
+$button-border-width: 3px
+
+// macros
+@function textColor($color)
+	@if lightness($color) < 50
+		@return $light-text
+	@else
+		@return $dark-text
+
+// RESET
+body
+  font: 300 16px "Helvetica Neue", Helvetica, sans-serif
+  margin: 0;
+
+html, body
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+
+*
+	box-sizing: border-box
+
+// defaults
+a:link
+	color: $contrast
+
+a:visited
+	color: $primary
+
+a:hover, a:active
+	color: darken($contrast, 10)
+	text-decoration: underline
+
+button
+	background: $primary
+	color: textColor($primary)
+	border: $button-border-width solid $primary
+	border-radius: 0
+	font-weight: 700
+	font-size: 1.25rem
+	padding: 0.5rem
+
+	&:hover
+		$hover: darken($primary, 20)
+		background: $hover
+		color: textColor($hover)
+		cursor: pointer
+		border: $button-border-width solid $hover
+
+	&:focus
+		border: $button-border-width solid $black
+		outline: none
+
+select
+	background: $primary
+	color: textColor($primary)
+	border: $button-border-width solid $primary
+	border-radius: 0
+	font-weight: 700
+	font-size: 1.25rem
+	padding: 0.5rem
+	text-align: center
+	-webkit-appearance: none
+
+	&:hover
+		$hover: darken($primary, 20)
+		background: $hover
+		color: textColor($hover)
+		cursor: pointer
+		border: $button-border-width solid $hover
+
+	&:focus
+		border: $button-border-width solid $black
+		outline: none
+
+h1
+	background: $primary
+	color: textColor($primary)
+	margin: 0

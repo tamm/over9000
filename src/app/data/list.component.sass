@@ -1,16 +1,4 @@
-$black: #030202
-$white: #FFFBEB
-$primary: #E66502
-$contrast: #007491
-$highlight: #FFFB2B
-$light-text: $white
-$dark-text: $black
-
-@function textColor($color)
-	@if lightness($color) < 50
-		@return $light-text
-	@else
-		@return $dark-text
+@import "~global.sass"
 
 #{':host'}
 	display: flex
@@ -20,9 +8,23 @@ $dark-text: $black
 section
 	padding: 1rem
 
-.tableData
-	background: lightgray
+h3
 	padding: 1rem
+	font-size: 1.5rem
+	a:link
+		text-decoration: none
+	a:hover, a:active
+		text-decoration: underline
+
+.tableData
+	border-top: 1px solid $contrast
+	border-bottom: 1px solid $contrast
+	background: transparentize($contrast, 0.95)
+	padding: 1rem
+
+.textBeforeTable,
+.textAfterTable
+	word-break: break-word
 
 .actions
 	display: flex

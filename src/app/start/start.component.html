@@ -1,11 +1,8 @@
 <div id="data-info">
-  <h3>Info about dataset</h3>
+	<h3>Info about dataset</h3>
 
-  <ul>
-    <li>Entries in data set: {{ dataService?.data?.value?.length }}</li>
-    <li>Subset start: {{ subsetStart }}</li>
-    <li>Subset end: {{ subsetEnd }}</li>
-  </ul>
+	<p>This is a presentation of the data found at <a href="http://webdatacommons.org/webtables/2015/downloadInstructions.html">http://webdatacommons.org/webtables/2015/downloadInstructions.html</a></p>
+    <p>Entries in data set: {{ dataService?.data?.value?.length }}</p>
 </div>
 
-<a href="datalist" [routerLink]="['/datalist']">Show Data</a>
+<button [routerLink]="['/datalist']">Show Data</button>

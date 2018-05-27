@@ -1,4 +1,40 @@
+@import "~global.sass"
+
 #{':host'}
-	display: flex
-	flex-direction: column
-	overflow-y: auto
+	display: block
+	overflow-x: auto
+	background: $white
+
+	transition: all .1s ease-in-out
+	&.scrollable-right
+		box-shadow: inset 20px 0px 20px -10px rgba(0,0,0,0), inset -20px 0px 20px -10px rgba(0,0,0,0.2)
+	&.scrollable-left
+		box-shadow: inset 20px 0px 20px -10px rgba(0,0,0,0.2), inset -20px 0px 20px -10px rgba(0,0,0,0)
+	&.scrollable-right.scrollable-left
+		box-shadow: inset 20px 0px 20px -10px rgba(0,0,0,0.2), inset -20px 0px 20px -10px rgba(0,0,0,0.2)
+
+table
+	min-width: 100%
+	border-spacing: 0
+
+th
+	background-color: $contrast
+	color: textColor($contrast)
+	padding: 0.5rem
+
+td
+	padding: 0.5rem
+	border-bottom: 1px solid transparentize($contrast, 0.8)
+	word-break: break-word
+
+tr:last-child
+	td
+		border-bottom: 1px solid transparent
+
+ul
+	list-style: none
+	padding: 0.5rem
+	margin: 0
+
+	li
+		padding: 0.5rem

@@ -18,10 +18,11 @@ export class ListComponent {
   public subsetEnd: number
   private formSubscription: Subscription
   public page_num: number
+  public loading: boolean
 
   constructor(
     private http: Http,
-    private dataService: DataService,
+    public dataService: DataService,
     private route: ActivatedRoute,
     private router: Router,
   	) {
@@ -29,11 +30,14 @@ export class ListComponent {
       subsetLength: new FormControl(10)
     })
     this.subsetStart = 0
-  	this.page_num = 1
+    this.page_num = 1
+  	this.loading = false
   	this.subsetEnd = parseInt(this.listForm.controls['subsetLength'].value)
 
     if (this.dataService.data.value.length < 1) {
+      this.loading = true
   	  this.dataService.getSampleData().then(() => {
+        this.loading = false
         this.goToPage(this.page_num)
       })
     }

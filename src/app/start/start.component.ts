@@ -11,7 +11,7 @@ import { DataService } from 'app/services/data.service'
 export class StartComponent {
   constructor(
     private http: Http,
-    private dataService: DataService,
+    public dataService: DataService,
   	) {
 
     if (this.dataService.data.value.length < 1) {

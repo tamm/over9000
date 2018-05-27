@@ -1,8 +1,10 @@
-<div id="data-info">
+<section>
 	<h3>Info about dataset</h3>
 
 	<p>This is a presentation of the data found at <a href="http://webdatacommons.org/webtables/2015/downloadInstructions.html">http://webdatacommons.org/webtables/2015/downloadInstructions.html</a></p>
     <p>Entries in data set: {{ dataService?.data?.value?.length }}</p>
-</div>
+
+    <p>Please note that some of the data looks rather messy, this could be done in a more clean fashion given deeper knowledge of the dataset.</p>
+</section>
 
 <button [routerLink]="['/datalist']">Show Data</button>

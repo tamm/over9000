@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ServicesModule } from 'app/services/services.module';
 import { ListModule } from 'app/data/list.module';
 import { StartModule } from 'app/start/start.module';
+import { ErrorModule } from 'app/error/error.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StartModule } from 'app/start/start.module';
     ServicesModule,
     ListModule,
     StartModule,
+    ErrorModule,
     AppRoutingModule,
   ],
   providers: [],

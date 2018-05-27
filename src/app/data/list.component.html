@@ -1,3 +1,7 @@
+<section *ngIf="loading" class="loader">
+  <span class="loadingText">Please wait while the data loads.</span>
+</section>
+
 <section class="state" *ngIf="dataService?.data?.value?.length > 0">Showing page {{page_num}}, entries {{ subsetStart + 1 }} to {{ subsetEnd + 1 }} of {{ dataService?.data?.value?.length }}.</section>
 
 <div class="actions" [formGroup]="listForm" *ngIf="dataService?.data?.value?.length > 0">

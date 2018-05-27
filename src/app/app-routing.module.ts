@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { ListComponent } from 'app/data/list.component'
 import { StartComponent } from 'app/start/start.component'
+import { ErrorComponent } from 'app/error/error.component'
 
 export const routes: Routes = [
   {
@@ -27,11 +28,16 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'start',
-    pathMatch: 'full'
+    pathMatch: 'full',
+  },
+  {
+    path: 'error',
+    pathMatch: 'full',
+    component: ErrorComponent,
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'error',
   },
 ];
 

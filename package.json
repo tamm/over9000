@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "publish": "ng build --prod&& scp -rp ./dist/. 79.99.0.29:/var/www/html/over9000"
   },
   "private": true,
   "dependencies": {
